@@ -117,12 +117,12 @@ def main(config: dict):
     Args:
         config: Model configs.
     """
-    os.environ["CUDA_VISIBLE_DEVICES"] = config["AVAILABLE_GPUS"]   # setting available gpus, like: "0,1,2,3"
+    os.environ["CUDA_VISIBLE_DEVICES"] = "" # config["AVAILABLE_GPUS"]   # setting available gpus, like: "0,1,2,3"
 
     if config["USE_DISTRIBUTED"]:
         # https://i.steer.space/blog/2021/01/pytorch-dist-nccl-backend-allgather-stuck
-        torch.distributed.init_process_group("nccl")
-        torch.cuda.set_device(distributed_rank())
+        torch.distributed.init_process_group(backend="gloo")
+        # torch.cuda.set_device(distributed_rank())
 
     # You can only set the `--exp-name` in runtime option,
     # if `--outputs-dir` is None, it will be set to `./outputs/[exp_name]/`.

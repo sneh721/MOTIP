@@ -23,7 +23,8 @@ ms_deform_attn_cpu_forward(
     const at::Tensor &attn_weight,
     const int im2col_step)
 {
-    AT_ERROR("Not implement on cpu");
+    return ms_deform_attn_cuda_backward(
+        value, spatial_shapes, level_start_index, sampling_loc, attn_weight, grad_output, im2col_step);
 }
 
 std::vector<at::Tensor>
@@ -36,6 +37,7 @@ ms_deform_attn_cpu_backward(
     const at::Tensor &grad_output,
     const int im2col_step)
 {
-    AT_ERROR("Not implement on cpu");
+    return ms_deform_attn_cuda_backward(
+            value, spatial_shapes, level_start_index, sampling_loc, attn_weight, grad_output, im2col_step);
 }
 

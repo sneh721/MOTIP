@@ -5,8 +5,8 @@ MODE:       # "train" or "eval" or "submit", for the main.py script.
 # System config, like CPU/GPU
 NUM_CPU_PER_GPU:          # number of CPU per GPU
 NUM_WORKERS: 6
-DEVICE: cuda
-AVAILABLE_GPUS: 0,1,2,3,4,5,6,7
+DEVICE: cpu
+AVAILABLE_GPUS: ""
 
 # Git version:
 GIT_VERSION:              # you should input the git version here, if you are using wandb to log your experiments.

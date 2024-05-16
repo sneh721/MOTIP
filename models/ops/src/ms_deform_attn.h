@@ -35,7 +35,10 @@ ms_deform_attn_forward(
         AT_ERROR("Not compiled with GPU support");
 #endif
     }
-    AT_ERROR("Not implemented on the CPU");
+    else{
+        return ms_deform_attn_cpu_forward(
+            value, spatial_shapes, level_start_index, sampling_loc, attn_weight, im2col_step);
+    }
 }
 
 std::vector<at::Tensor>
@@ -57,6 +60,8 @@ ms_deform_attn_backward(
         AT_ERROR("Not compiled with GPU support");
 #endif
     }
-    AT_ERROR("Not implemented on the CPU");
+    else{
+        return ms_deform_attn_cuda_backward(
+            value, spatial_shapes, level_start_index, sampling_loc, attn_weight, grad_output, im2col_step);
+    }
 }
-
